@@ -1,0 +1,69 @@
+<div *ngIf="!showBill; else showBillemplate">
+<p class="h3 text-center">
+  Weolcome to bills manager
+  <br />
+  <br />
+  <button type="button" class="btn btn-success" (click)="displayBill()">
+    Show bills
+  </button>
+</p>
+</div>
+<ng-template #showBillemplate>
+<div #bill>
+  ### INPUT
+
+  <div class="col-12">
+    #### Input 1
+    <div *ngFor="let item of firstInput">
+      {{ item.quantity }} {{ item.label }} a <b>{{ item.price }} €</b>
+    </div>
+    #### Input 2:
+    <div *ngFor="let item of secondInput">
+      {{ item.quantity }} {{ item.label }} a <b>{{ item.price }}€</b>
+    </div>
+    #### Input 3:
+    <div *ngFor="let item of thirdInput">
+      {{ item.quantity }} {{ item.label }} a <b>{{ item.price }}€</b>
+    </div>
+  </div>
+
+  <p>### OUTPUT</p>
+  <div class="col-12">
+    #### OUTPUT 1
+    <div *ngFor="let item of firstInput">
+      {{ item.quantity }} {{ item.label }} a {{ item.price }}€ :
+      <b>{{ item.finalPrice }}€</b>
+    </div>
+    Total TTC: {{ totalfirstInput }}€ <br />
+    Total Taxes: {{ totalTaxeFirstInput }}€ <br />
+
+    #### OUTPUT 2:
+    <div *ngFor="let item of secondInput">
+      {{ item.quantity }} {{ item.label }} a {{ item.price }}€ :
+      <b>{{ item.finalPrice }}€</b>
+    </div>
+    Total TTC: {{ totalSecondInput }}€
+    <br />
+    Total Taxes: {{ totalTaxeSecondInput }}€ <br />
+
+    #### OUTPUT 3:
+    <div *ngFor="let item of thirdInput">
+      {{ item.quantity }} {{ item.label }} a {{ item.price }}€ :
+      <b>{{ item.finalPrice }}€</b>
+    </div>
+    Total TTC: <b> {{ totalThirdInput }} </b>
+
+    <br />
+    Total Taxes:  <b> {{ totalTaxeThirdInput }} € </b> <br /> <br />
+  </div>
+  Total des achats: <b> {{ totalSum.toFixed(2) }} € </b>
+    <div>
+      <a
+        href="#"
+        class="print-hidden btn btn-success btn-bold px-4 float-right mt-3 mt-lg-0"
+        (click)="print(bill)"
+        >Print Bills</a
+      >
+  </div>
+</div>
+</ng-template>
